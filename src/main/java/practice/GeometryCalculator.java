@@ -1,6 +1,5 @@
 package practice;
 
-import net.sf.saxon.expr.Component;
 
 public class GeometryCalculator {
 
@@ -16,12 +15,17 @@ public class GeometryCalculator {
     }
 
     public static boolean isTrianglePossible(double a, double b, double c) {
-        return false;
+        double maxSide = Math.max(a, Math.max(b, c));
+        double minSide = Math.min(a, Math.min(b, c));
+        double middleSide = (a + b + c) - maxSide - minSide;
+        return (minSide + middleSide) > maxSide;
     }
 
     // перед расчетом площади рекомендуется проверить возможен ли такой треугольник
     // методом isTrianglePossible, если невозможен вернуть -1.0
     public static double getTriangleSquare(double a, double b, double c) {
-        return 0.0;
+        double p = (a + b + c) / 2.0;
+        double areaTriangle = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+        return isTrianglePossible(a, b, c) ? areaTriangle : - 1.0;
     }
 }
