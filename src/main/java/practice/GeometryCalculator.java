@@ -6,7 +6,7 @@ public class GeometryCalculator {
 
     // если значение radius меньше 0, метод должен вернуть -1
     public static double getCircleSquare(double radius) {
-        return 0.0;
+        return radius < 0 ? -1 : Math.PI * Math.pow(radius, 2);
     }
 
     // если значение radius меньше 0, метод должен вернуть -1
